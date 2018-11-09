@@ -40,7 +40,7 @@ void test_mult()
 void test_add()
 {
 
-  Symbol<long> y1 = Symbol<long>(10, 5) * Symbol<long>(10, 5);
+  Symbol<long> y1 = Symbol<long>(10, 5) + Symbol<long>(10, 5);
 
   if (y1.getNum() != 100 || y1.getDen() != 25)
   {
@@ -56,9 +56,51 @@ void test_add()
     cout << y2 << endl;
   }
 }
+
+void test_sub()
+{
+
+  Symbol<long> y1 = Symbol<long>(10, 5) - Symbol<long>(10, 5);
+
+  if (y1.getNum() != 0 || y1.getDen() != 25)
+  {
+    cout << test_failed << __FUNCTION__ << endl;
+    cout << y1 << endl;
+  }
+
+  Symbol<long> y2 = y1 - genSymbol((long)2, (long)2);
+
+  if (y2.getNum() != -50 || y2.getDen() != 50)
+  {
+    cout << test_failed << __FUNCTION__ << endl;
+    cout << y2 << endl;
+  }
+}
+
+void test_div()
+{
+  Symbol<long> y2 = genSymbol((long)10, (long)5) / genSymbol((long)5, (long)2);
+
+  if (y2.getNum() != 20 || y2.getDen() != 25)
+  {
+    cout << test_failed << __FUNCTION__ << endl;
+    cout << y2 << endl;
+  }
+
+  Symbol<long> y1 = Symbol<long>(10, 5) / y2;
+
+  if (y1.getNum() != 250 || y1.getDen() != 100)
+  {
+    cout << test_failed << __FUNCTION__ << endl;
+    cout << y1 << endl;
+  }
+}
+
 void run_tests()
 {
   test_2x2();
   test_mult();
   test_add();
+  test_sub();
+  test_div();
 }

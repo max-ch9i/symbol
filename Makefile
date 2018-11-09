@@ -10,6 +10,9 @@ tests.o: tests.cpp
 main.o: main.cpp
 	g++ -std=c++11 -c -g -O0 -Wall -fPIC $<
 
+libsymbol.so: symbol.o
+	g++ -shared -std=c++11 -g -O0 -Wall -fPIC symbol.o -o libsymbol.so
+
 .PHONY: clean
 clean:
 	rm *.o *.a *.so

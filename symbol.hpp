@@ -110,4 +110,55 @@ class Symbol
       Symbol x(a.getNum()*b.getDen() + b.getNum()*a.getDen(), a.getDen() * b.getDen());
       return x;
     };
+
+    // SUBTRACTION
+    friend Symbol operator-(const Symbol& a, const Symbol& b)
+    {
+      Symbol x(a.getNum()*b.getDen() - b.getNum()*a.getDen(), a.getDen() * b.getDen());
+      return x;
+    };
+
+    friend Symbol operator-(const Symbol& a, Symbol&& b)
+    {
+      Symbol x(a.getNum()*b.getDen() - b.getNum()*a.getDen(), a.getDen() * b.getDen());
+      return x;
+    };
+
+    friend Symbol operator-(Symbol&& a, const Symbol& b)
+    {
+      Symbol x(a.getNum()*b.getDen() - b.getNum()*a.getDen(), a.getDen() * b.getDen());
+      return x;
+    };
+
+    friend Symbol operator-(Symbol&& a, Symbol&& b)
+    {
+      Symbol x(a.getNum()*b.getDen() - b.getNum()*a.getDen(), a.getDen() * b.getDen());
+      return x;
+    };
+
+
+    // DIVISION
+    friend Symbol operator/(const Symbol& a, const Symbol& b)
+    {
+      Symbol x(a.getNum()*b.getDen(), a.getDen() * b.getNum());
+      return x;
+    };
+
+    friend Symbol operator/(const Symbol& a, Symbol&& b)
+    {
+      Symbol x(a.getNum()*b.getDen(), a.getDen() * b.getNum());
+      return x;
+    };
+
+    friend Symbol operator/(Symbol&& a, const Symbol& b)
+    {
+      Symbol x(a.getNum()*b.getDen(), a.getDen() * b.getNum());
+      return x;
+    };
+
+    friend Symbol operator/(Symbol&& a, Symbol&& b)
+    {
+      Symbol x(a.getNum()*b.getDen(), a.getDen() * b.getNum());
+      return x;
+    };
 };
