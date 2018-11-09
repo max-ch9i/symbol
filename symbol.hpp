@@ -18,11 +18,11 @@ class Symbol
     // COPY
     Symbol(const Symbol& x):num(x.getNum()),den(x.getDen())
     {
-      std::cout << "COPY CONST" << std::endl;
+      // std::cout << "COPY CONST" << std::endl;
     }
     Symbol& operator=(const Symbol& x)
     {
-      std::cout << "COPY ASSIGN" << std::endl;
+      // std::cout << "COPY ASSIGN" << std::endl;
       num = x.getNum();
       den = x.getDen();
       return *this;
@@ -31,17 +31,22 @@ class Symbol
     // Move
     Symbol(Symbol&& x):num(x.getNum()),den(x.getDen())
     {
-      std::cout << "MOVE CONST" << std::endl;
+      // std::cout << "MOVE CONST" << std::endl;
     }
     Symbol& operator=(Symbol&& x)
     {
-      std::cout << "MOVE ASSGN" << std::endl;
+      // std::cout << "MOVE ASSGN" << std::endl;
       if (this != &x)
       {
         num = x.getNum();
         den = x.getDen();
       }
       return *this;
+    }
+
+    double sim()
+    {
+      return (double)num / (double)den;
     }
 
     void operator*=(const T& x)
@@ -56,8 +61,8 @@ class Symbol
     }
     void operator-=(const Symbol& x)
     {
-      num -= x.getNum();
-      den -= x.getDen();
+      num = (num * x.getDen() - x.getNum()*den);
+      den = (den * x.getDen());
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Symbol<T>& m)
