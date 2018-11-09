@@ -54,6 +54,11 @@ class Symbol
       num *= x.getNum();
       den *= x.getDen();
     }
+    void operator-=(const Symbol& x)
+    {
+      num -= x.getNum();
+      den -= x.getDen();
+    }
 
     friend std::ostream& operator<<(std::ostream& os, const Symbol<T>& m)
     {
@@ -161,4 +166,9 @@ class Symbol
       Symbol x(a.getNum()*b.getDen(), a.getDen() * b.getNum());
       return x;
     };
+
+    friend bool operator!=(const Symbol& a, const Symbol& b)
+    {
+      return (a - b).getNum() != 0;
+    }
 };
