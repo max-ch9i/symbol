@@ -1,5 +1,7 @@
 #include <iostream>
+#include <vector>
 #include "symbol.hpp"
+#include "simplify.hpp"
 
 char test_failed[] = "Test failed: ";
 
@@ -96,6 +98,16 @@ void test_div()
   }
 }
 
+void test_simplify()
+{
+  Symbol<long> x(81,3);
+  // Simplify::getInstance().sim(x);
+
+  Simplify<long> simplify;
+  Symbol<long> x1 = simplify.sim(x);
+  cout << x1 << endl;
+}
+
 void run_tests()
 {
   test_2x2();
@@ -103,4 +115,5 @@ void run_tests()
   test_add();
   test_sub();
   test_div();
+  test_simplify();
 }
