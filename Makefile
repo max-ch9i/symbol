@@ -1,4 +1,4 @@
-prog: symbol.o main.o tests.o simplify.o simplify.hpp
+prog: symbol.o main.o tests.o simplify.o
 	g++ -std=c++11 -g -O0 -Wall -fPIC simplify.o tests.o symbol.o main.o -o prog
 
 symbol.o: symbol.cpp symbol.hpp
@@ -7,7 +7,7 @@ symbol.o: symbol.cpp symbol.hpp
 simplify.o: simplify.cpp simplify.hpp
 	g++ -std=c++11 -c -g -O0 -Wall -fPIC $<
 
-tests.o: tests.cpp
+tests.o: tests.cpp simplify.hpp
 	g++ -std=c++11 -c -g -O0 -Wall -fPIC $<
 
 main.o: main.cpp

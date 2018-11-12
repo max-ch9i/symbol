@@ -2,51 +2,64 @@
 #include <map>
 #include <vector>
 #include <cmath>
+#include <utility>
+#include <iostream>
+
+enum CACHE{FOUND, NOT_FOUND};
 
 template<class T> 
 class Simplify
 {
     public:
-        T getGreatestCommonDivisor(T num, T den)
+        T getGreatestCommonDivisor(T x, T y)
         {
-          if (gcds.find(num) != gcds.end() && gcds[num].find(den) != gcds[num].end())
+          if (x == 0)
           {
-            return gcds[num][den];
+            return y;
           }
 
-          if (num % den == 0)
+          T _num = std::abs(x);
+          T _den = std::abs(y);
+
+          T num = _num > _den ? _num : _den;
+          T den = _num > _den ? _den : _num;
+
+          std::pair<T, CACHE> c = get_from_cache(num, den);
+
+          if (std::get<1>(c) != CACHE::NOT_FOUND)
+            return std::get<0>(c);
+
+          if (den != 0 && num % den == 0)
           {
+            add_to_cache(num, den, den);
             return den;
           }
 
           std::vector<T> a = getDivisors(num);
           std::vector<T> b = getDivisors(den);
 
+          T res = (T)1;
+
           typename std::vector<T>::iterator a_it = a.begin();
           typename std::vector<T>::iterator a_end = a.end();
-          typename std::vector<T>::iterator b_it = b.begin();
-          typename std::vector<T>::iterator b_end = b.end();
-          T res = (T)1;
 
           for (;a_it != a_end;++a_it)
           {
+            typename std::vector<T>::iterator b_it = b.begin();
+            typename std::vector<T>::iterator b_end = b.end();
+
             for (;b_it != b_end;++b_it)
             {
               if (*a_it == *b_it)
               {
                 res = (T)*a_it;
+                a_it = a_end - 1;
+                b_it = b_end - 1;
               }
             }
           }
 
-          if (gcds.find(num) == gcds.end())
-          {
-            gcds[num] = { {den, res} };
-          }
-          else
-          {
-            gcds[num][den] = res;
-          }
+          add_to_cache(num, den, res);
           
           return res;
         }
@@ -72,6 +85,25 @@ class Simplify
           return res;
         }
     private:
+        std::pair<T, CACHE> get_from_cache(T num, T den)
+        {
+          if (gcds.find(num) != gcds.end() && gcds[num].find(den) != gcds[num].end())
+          {
+            return std::pair<T, CACHE>(gcds[num][den], CACHE::FOUND);
+          }
+          return std::pair<T, CACHE>((T)0, CACHE::NOT_FOUND);
+        }
+        void add_to_cache(T num, T den, T res)
+        {
+          if (gcds.find(num) == gcds.end())
+          {
+            gcds[num] = { {den, res} };
+          }
+          else
+          {
+            gcds[num][den] = res;
+          }
+        }
         std::map<T, std::vector<T>> divisors;
         std::map<T, std::map<T,T>> gcds;
 };

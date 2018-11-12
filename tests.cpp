@@ -24,7 +24,7 @@ void test_mult()
 {
   Symbol<long> y2 = genSymbol((long)10, (long)5) * genSymbol((long)5, (long)1);
 
-  if (y2.getNum() != 50 || y2.getDen() != 5)
+  if (y2.getNum() != 10 || y2.getDen() != 1)
   {
     cout << test_failed << __FUNCTION__ << endl;
     cout << y2 << endl;
@@ -32,7 +32,7 @@ void test_mult()
 
   Symbol<long> y1 = Symbol<long>(10, 5) * y2;
 
-  if (y1.getNum() != 500 || y1.getDen() != 25)
+  if (y1.getNum() != 20 || y1.getDen() != 1)
   {
     cout << test_failed << __FUNCTION__ << endl;
     cout << y1 << endl;
@@ -44,7 +44,7 @@ void test_add()
 
   Symbol<long> y1 = Symbol<long>(10, 5) + Symbol<long>(10, 5);
 
-  if (y1.getNum() != 100 || y1.getDen() != 25)
+  if (y1.getNum() != 4 || y1.getDen() != 1)
   {
     cout << test_failed << __FUNCTION__ << endl;
     cout << y1 << endl;
@@ -52,7 +52,7 @@ void test_add()
 
   Symbol<long> y2 = genSymbol((long)2, (long)2) + y1;
 
-  if (y2.getNum() != 250 || y2.getDen() != 50)
+  if (y2.getNum() != 5 || y2.getDen() != 1)
   {
     cout << test_failed << __FUNCTION__ << endl;
     cout << y2 << endl;
@@ -64,7 +64,7 @@ void test_sub()
 
   Symbol<long> y1 = Symbol<long>(10, 5) - Symbol<long>(10, 5);
 
-  if (y1.getNum() != 0 || y1.getDen() != 25)
+  if (y1.getNum() != 0 || y1.getDen() != 1)
   {
     cout << test_failed << __FUNCTION__ << endl;
     cout << y1 << endl;
@@ -72,7 +72,7 @@ void test_sub()
 
   Symbol<long> y2 = y1 - genSymbol((long)2, (long)2);
 
-  if (y2.getNum() != -50 || y2.getDen() != 50)
+  if (y2.getNum() != -1 || y2.getDen() != 1)
   {
     cout << test_failed << __FUNCTION__ << endl;
     cout << y2 << endl;
@@ -83,7 +83,7 @@ void test_div()
 {
   Symbol<long> y2 = genSymbol((long)10, (long)5) / genSymbol((long)5, (long)2);
 
-  if (y2.getNum() != 20 || y2.getDen() != 25)
+  if (y2.getNum() != 4 || y2.getDen() != 5)
   {
     cout << test_failed << __FUNCTION__ << endl;
     cout << y2 << endl;
@@ -91,7 +91,7 @@ void test_div()
 
   Symbol<long> y1 = Symbol<long>(10, 5) / y2;
 
-  if (y1.getNum() != 250 || y1.getDen() != 100)
+  if (y1.getNum() != 5 || y1.getDen() != 2)
   {
     cout << test_failed << __FUNCTION__ << endl;
     cout << y1 << endl;
@@ -100,11 +100,15 @@ void test_div()
 
 void test_simplify()
 {
-  Symbol<long> x(1242300,3);
-  // Simplify::getInstance().sim(x);
+  Symbol<long> x(50,20);
 
   x.expand();
-  cout << x << endl;
+
+  if (x.getNum() != 5 || x.getDen() != 2)
+  {
+    cout << test_failed << __FUNCTION__ << endl;
+    cout << x << endl;
+  }
 }
 
 void run_tests()

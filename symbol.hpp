@@ -85,24 +85,28 @@ class Symbol
     friend Symbol operator*(const Symbol& a, const Symbol& b)
     {
       Symbol x(a.getNum() * b.getNum(), a.getDen() * b.getDen());
+      x.expand();
       return x;
     };
 
     friend Symbol operator*(const Symbol& a, Symbol&& b)
     {
       Symbol x(a.getNum() * b.getNum(), a.getDen() * b.getDen());
+      x.expand();
       return x;
     };
 
     friend Symbol operator*(Symbol&& a, const Symbol& b)
     {
       Symbol x(a.getNum() * b.getNum(), a.getDen() * b.getDen());
+      x.expand();
       return x;
     };
 
     friend Symbol operator*(Symbol&& a, Symbol&& b)
     {
       Symbol x(a.getNum() * b.getNum(), a.getDen() * b.getDen());
+      x.expand();
       return x;
     };
 
@@ -110,24 +114,28 @@ class Symbol
     friend Symbol operator+(const Symbol& a, const Symbol& b)
     {
       Symbol x(a.getNum()*b.getDen() + b.getNum()*a.getDen(), a.getDen() * b.getDen());
+      x.expand();
       return x;
     };
 
     friend Symbol operator+(const Symbol& a, Symbol&& b)
     {
       Symbol x(a.getNum()*b.getDen() + b.getNum()*a.getDen(), a.getDen() * b.getDen());
+      x.expand();
       return x;
     };
 
     friend Symbol operator+(Symbol&& a, const Symbol& b)
     {
       Symbol x(a.getNum()*b.getDen() + b.getNum()*a.getDen(), a.getDen() * b.getDen());
+      x.expand();
       return x;
     };
 
     friend Symbol operator+(Symbol&& a, Symbol&& b)
     {
       Symbol x(a.getNum()*b.getDen() + b.getNum()*a.getDen(), a.getDen() * b.getDen());
+      x.expand();
       return x;
     };
 
@@ -135,24 +143,28 @@ class Symbol
     friend Symbol operator-(const Symbol& a, const Symbol& b)
     {
       Symbol x(a.getNum()*b.getDen() - b.getNum()*a.getDen(), a.getDen() * b.getDen());
+      x.expand();
       return x;
     };
 
     friend Symbol operator-(const Symbol& a, Symbol&& b)
     {
       Symbol x(a.getNum()*b.getDen() - b.getNum()*a.getDen(), a.getDen() * b.getDen());
+      x.expand();
       return x;
     };
 
     friend Symbol operator-(Symbol&& a, const Symbol& b)
     {
       Symbol x(a.getNum()*b.getDen() - b.getNum()*a.getDen(), a.getDen() * b.getDen());
+      x.expand();
       return x;
     };
 
     friend Symbol operator-(Symbol&& a, Symbol&& b)
     {
       Symbol x(a.getNum()*b.getDen() - b.getNum()*a.getDen(), a.getDen() * b.getDen());
+      x.expand();
       return x;
     };
 
@@ -161,24 +173,28 @@ class Symbol
     friend Symbol operator/(const Symbol& a, const Symbol& b)
     {
       Symbol x(a.getNum()*b.getDen(), a.getDen() * b.getNum());
+      x.expand();
       return x;
     };
 
     friend Symbol operator/(const Symbol& a, Symbol&& b)
     {
       Symbol x(a.getNum()*b.getDen(), a.getDen() * b.getNum());
+      x.expand();
       return x;
     };
 
     friend Symbol operator/(Symbol&& a, const Symbol& b)
     {
       Symbol x(a.getNum()*b.getDen(), a.getDen() * b.getNum());
+      x.expand();
       return x;
     };
 
     friend Symbol operator/(Symbol&& a, Symbol&& b)
     {
       Symbol x(a.getNum()*b.getDen(), a.getDen() * b.getNum());
+      x.expand();
       return x;
     };
 
