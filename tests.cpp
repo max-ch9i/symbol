@@ -100,7 +100,7 @@ void test_div()
 
 void test_simplify()
 {
-  Symbol<long> x(81,3);
+  Symbol<long> x(1242300,3);
   // Simplify::getInstance().sim(x);
 
   Simplify<long> simplify;
