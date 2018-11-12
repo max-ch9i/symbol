@@ -62,17 +62,20 @@ class Symbol
     void operator*=(const T& x)
     {
       num *= x;
+      expand();
     }
 
     void operator*=(const Symbol& x)
     {
       num *= x.getNum();
       den *= x.getDen();
+      expand();
     }
     void operator-=(const Symbol& x)
     {
       num = (num * x.getDen() - x.getNum()*den);
       den = (den * x.getDen());
+      expand();
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Symbol<T>& m)

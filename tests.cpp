@@ -100,11 +100,11 @@ void test_div()
 
 void test_simplify()
 {
-  Symbol<long> x(50,20);
+  Symbol<long> x(96213880, 107415520);
 
   x.expand();
 
-  if (x.getNum() != 5 || x.getDen() != 2)
+  if (x.getNum() != 8323 || x.getDen() != 9292)
   {
     cout << test_failed << __FUNCTION__ << endl;
     cout << x << endl;
