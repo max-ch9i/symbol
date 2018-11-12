@@ -103,9 +103,8 @@ void test_simplify()
   Symbol<long> x(1242300,3);
   // Simplify::getInstance().sim(x);
 
-  Simplify<long> simplify;
-  Symbol<long> x1 = simplify.sim(x);
-  cout << x1 << endl;
+  x.expand();
+  cout << x << endl;
 }
 
 void run_tests()

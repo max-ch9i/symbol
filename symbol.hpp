@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "simplify.hpp"
 
 template <class T>
 class Symbol
@@ -47,6 +48,15 @@ class Symbol
     double sim()
     {
       return (double)num / (double)den;
+    }
+
+    void expand()
+    {
+      static Simplify<T> simplify;
+      T gcd = simplify.getGreatestCommonDivisor(num, den);
+
+      num = num / gcd;
+      den = den / gcd;
     }
 
     void operator*=(const T& x)
@@ -177,3 +187,4 @@ class Symbol
       return (a - b).getNum() != 0;
     }
 };
+

@@ -1,5 +1,4 @@
 #pragma once
-#include "symbol.hpp"
 #include <map>
 #include <vector>
 #include <cmath>
@@ -8,15 +7,6 @@ template<class T>
 class Simplify
 {
     public:
-        Symbol<T> sim(Symbol<T> x)
-        {
-          T num = x.getNum();
-          T den = x.getDen();
-
-          T gcd = getGreatestCommonDivisor(num, den);
-
-          return Symbol<T>(num / gcd, den / gcd);
-        }
         T getGreatestCommonDivisor(T num, T den)
         {
           if (gcds.find(num) != gcds.end() && gcds[num].find(den) != gcds[num].end())
