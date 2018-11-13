@@ -65,13 +65,15 @@ class Simplify
         }
         T getGreatestCommonDivisor(T _num, T _den)
         {
+          std::cout << "Try: " << _num << " and " << _den  << std::endl;
+
+          _num = std::abs(_num);
+          _den = std::abs(_den);
+
           if (_num == 0 && _den != 0)
           {
             return _den;
           }
-
-          _num = std::abs(_num);
-          _den = std::abs(_den);
 
           T x = _num > _den ? _num : _den;
           T y = _num > _den ? _den : _num;
@@ -98,6 +100,7 @@ class Simplify
             remainder_prev = remainder;
 
             remainder = x % y;
+            std::cout << x << " = k * " << y << " + " << remainder << std::endl;
           }
 
           add_to_cache(cache_x, cache_y, remainder_prev);

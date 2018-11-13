@@ -55,8 +55,12 @@ class Symbol
       static Simplify<T> simplify;
       T gcd = simplify.getGreatestCommonDivisor(num, den);
 
+      std::cout << gcd << std::endl;
+
       num = num / gcd;
       den = den / gcd;
+
+      std::cout << num << " " << den << std::endl;
     }
 
     void operator*=(const T& x)
