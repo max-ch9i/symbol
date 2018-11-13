@@ -11,7 +11,7 @@ template<class T>
 class Simplify
 {
     public:
-        T getGreatestCommonDivisor(T x, T y)
+        T getGreatestCommonDivisorBrute(T x, T y)
         {
           if (x == 0)
           {
@@ -62,6 +62,47 @@ class Simplify
           add_to_cache(num, den, res);
           
           return res;
+        }
+        T getGreatestCommonDivisor(T _num, T _den)
+        {
+          if (_num == 0 && _den != 0)
+          {
+            return _den;
+          }
+
+          _num = std::abs(_num);
+          _den = std::abs(_den);
+
+          T x = _num > _den ? _num : _den;
+          T y = _num > _den ? _den : _num;
+
+          std::pair<T, CACHE> c = get_from_cache(x, y);
+
+          if (std::get<1>(c) != CACHE::NOT_FOUND)
+            return std::get<0>(c);
+
+          T cache_x = x;
+          T cache_y = y;
+
+          // Euclids
+          // x > y, x > 0, y > 0
+          // x = k*y + l
+
+          T remainder = y + x;
+          T remainder_prev = x;
+
+          while (remainder != 0)
+          {
+            x = y;
+            y = remainder;
+            remainder_prev = remainder;
+
+            remainder = x % y;
+          }
+
+          add_to_cache(cache_x, cache_y, remainder_prev);
+
+          return remainder_prev;
         }
         std::vector<T> getDivisors(T a)
         {
